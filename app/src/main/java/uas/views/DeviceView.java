@@ -21,10 +21,10 @@ public class DeviceView {
 
     public void render() {
         int menu = -1;
+        this.printMenu();
+        menu = CLIUtil.getInt();
         while (menu != 0) {
             try {
-                this.printMenu();
-                menu = CLIUtil.getInt();
                 if (menu < 0 || menu > 3) {
                     throw new InvalidInputMenuException("Salah menu: " + menu);
                 }
@@ -41,13 +41,13 @@ public class DeviceView {
                     case 0:
                         return;
                 }
-                this.printMenu();
-                menu = CLIUtil.getInt();
             } catch (InvalidInputMenuException e) {
                 System.out.println(e.getMessage());
             } catch (EmptyListException e) {
                 System.out.println(e.getMessage());
             }
+            this.printMenu();
+            menu = CLIUtil.getInt();
         }
     }
 
